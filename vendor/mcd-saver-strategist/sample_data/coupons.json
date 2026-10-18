@@ -1,0 +1,82 @@
+{
+  "source": "demo · 聚合 MCP available-coupons / auto-bind-coupons / query-my-coupons / query-store-coupons 归一化结果",
+  "coupons": [
+    {
+      "id": "MY-BIGMAC-18.9",
+      "type": "item_price",
+      "title": "巨无霸专享价 ¥18.9",
+      "item_codes": ["BIGMAC"],
+      "override_price": 18.9,
+      "stackable": false,
+      "from": "query-my-coupons"
+    },
+    {
+      "id": "MY-FRIES-50",
+      "type": "percent",
+      "title": "中薯条 5 折",
+      "item_codes": ["FRIES_M"],
+      "discount_pct": 0.5,
+      "stackable": false,
+      "from": "available-coupons"
+    },
+    {
+      "id": "MY-NUGGETS-80",
+      "type": "percent",
+      "title": "麦乐鸡 8 折",
+      "item_codes": ["NUGGETS_5"],
+      "discount_pct": 0.8,
+      "stackable": false,
+      "from": "available-coupons"
+    },
+    {
+      "id": "STORE-FULL-35-7",
+      "type": "threshold",
+      "title": "门店券 满 35 减 7",
+      "min_spend": 35.0,
+      "discount": 7.0,
+      "stackable": true,
+      "channel": "pickup",
+      "from": "query-store-coupons"
+    },
+    {
+      "id": "DLV-FULL-40-6",
+      "type": "threshold",
+      "title": "外送 满 40 减 6",
+      "min_spend": 40.0,
+      "discount": 6.0,
+      "stackable": true,
+      "channel": "delivery",
+      "from": "delivery-promotions"
+    },
+    {
+      "id": "MC-SAVE-FULL-25-4",
+      "type": "threshold",
+      "title": "麦麦省 满 25 减 4",
+      "min_spend": 25.0,
+      "discount": 4.0,
+      "stackable": true,
+      "from": "available-coupons"
+    },
+    {
+      "id": "COMBO-1P1-12.9",
+      "type": "bundle_price",
+      "title": "1+1 随心配 ¥12.9",
+      "groups": [
+        ["BIGMAC", "MCSPICY", "MCCRISPY", "DUBLECHE", "FILEFISH", "NUGGETS_5", "WINGS_2"],
+        ["FRIES_M", "COKE_M", "SPRITE_M", "COFFEE_M", "PIE_TARO", "CONE", "MCFLURRY"]
+      ],
+      "price": 12.9,
+      "stackable": false,
+      "from": "available-coupons"
+    },
+    {
+      "id": "GIFT-PIE-20",
+      "type": "free_gift",
+      "title": "满 20 送香芋派",
+      "min_spend": 20.0,
+      "gift_codes": ["PIE_TARO"],
+      "stackable": true,
+      "from": "available-coupons"
+    }
+  ]
+}

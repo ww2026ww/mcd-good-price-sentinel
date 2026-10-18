@@ -1,0 +1,166 @@
+{
+  "action": "notify",
+  "date": "2026-10-18",
+  "store_code": "SZ0001",
+  "currency": "CNY",
+  "personal_threshold": 6.0,
+  "baseline_total": 47.0,
+  "best_total": 21.9,
+  "personal_gap": 25.1,
+  "best_plan": {
+    "items": [
+      {
+        "code": "BIGMAC",
+        "name": "巨无霸",
+        "category": "burger"
+      },
+      {
+        "code": "FRIES_M",
+        "name": "中薯条",
+        "category": "side"
+      },
+      {
+        "code": "COKE_M",
+        "name": "可口可乐 中杯",
+        "category": "drink"
+      }
+    ],
+    "lines": [
+      {
+        "code": "COKE_M",
+        "name": "可口可乐 中杯",
+        "price": 9.0,
+        "tag": ""
+      },
+      {
+        "code": "BIGMAC+FRIES_M",
+        "name": "1+1 随心配 ¥12.9",
+        "price": 12.9,
+        "tag": "组合价"
+      }
+    ],
+    "gifts": [],
+    "coupons": [
+      {
+        "id": "COMBO-1P1-12.9",
+        "title": "1+1 随心配 ¥12.9"
+      }
+    ],
+    "subtotal": 21.9,
+    "threshold_discount": 0.0,
+    "delivery_fee": 0.0,
+    "total": 21.9,
+    "unit_total": 21.9,
+    "party_size": 1,
+    "per_person": 21.9,
+    "raw_total": 47.0,
+    "coupon_saving": 25.1,
+    "saving_pct": 0.534,
+    "calories": 1040,
+    "item_count": 3,
+    "wants_fulfilled": 3,
+    "wants_total": 3,
+    "notes": [
+      "比「直接按想吃的点」省 25.10 元",
+      "折扣力度 53%, 属于强力优惠组合",
+      "预算 40.0 元内 ✓"
+    ]
+  },
+  "cause": {
+    "kind": "new_coupon",
+    "coupon_id": "MY-BIGMAC-18.9",
+    "coupon_title": "巨无霸专享价 ¥18.9",
+    "coupon_type": "item_price",
+    "personal": true,
+    "note": "出现新券「巨无霸专享价 ¥18.9」（与你的常点项相关）"
+  },
+  "gates": {
+    "gap_ok": true,
+    "preference_match": true,
+    "not_duplicate": true,
+    "has_cause": true,
+    "matched_favorites": [
+      "巨无霸",
+      "中薯条",
+      "可口可乐 中杯"
+    ],
+    "dining_ok": true,
+    "cal_ok": true,
+    "threshold": 6.0
+  },
+  "reason": "你常点的组合平时约 ¥47.00，今天用券叠算后到手 ¥21.90，且包含你常点的「巨无霸、中薯条、可口可乐 中杯」，省 ¥25.10（达到你的 ¥6.00 提醒阈值）。成因：出现新券「巨无霸专享价 ¥18.9」（与你的常点项相关）。建议今天下单。",
+  "silence_reason": "",
+  "drifts": [
+    {
+      "kind": "new_coupon",
+      "coupon_id": "MY-BIGMAC-18.9",
+      "coupon_title": "巨无霸专享价 ¥18.9",
+      "coupon_type": "item_price",
+      "personal": true,
+      "note": "出现新券「巨无霸专享价 ¥18.9」（与你的常点项相关）"
+    },
+    {
+      "kind": "new_coupon",
+      "coupon_id": "MY-FRIES-50",
+      "coupon_title": "中薯条 5 折",
+      "coupon_type": "percent",
+      "personal": true,
+      "note": "出现新券「中薯条 5 折」（与你的常点项相关）"
+    },
+    {
+      "kind": "new_coupon",
+      "coupon_id": "MY-NUGGETS-80",
+      "coupon_title": "麦乐鸡 8 折",
+      "coupon_type": "percent",
+      "personal": false,
+      "note": "出现新券「麦乐鸡 8 折」（通用）"
+    },
+    {
+      "kind": "new_coupon",
+      "coupon_id": "STORE-FULL-35-7",
+      "coupon_title": "门店券 满 35 减 7",
+      "coupon_type": "threshold",
+      "personal": true,
+      "note": "出现新券「门店券 满 35 减 7」（与你的常点项相关）"
+    },
+    {
+      "kind": "new_coupon",
+      "coupon_id": "DLV-FULL-40-6",
+      "coupon_title": "外送 满 40 减 6",
+      "coupon_type": "threshold",
+      "personal": true,
+      "note": "出现新券「外送 满 40 减 6」（与你的常点项相关）"
+    },
+    {
+      "kind": "new_coupon",
+      "coupon_id": "MC-SAVE-FULL-25-4",
+      "coupon_title": "麦麦省 满 25 减 4",
+      "coupon_type": "threshold",
+      "personal": true,
+      "note": "出现新券「麦麦省 满 25 减 4」（与你的常点项相关）"
+    },
+    {
+      "kind": "new_coupon",
+      "coupon_id": "COMBO-1P1-12.9",
+      "coupon_title": "1+1 随心配 ¥12.9",
+      "coupon_type": "bundle_price",
+      "personal": true,
+      "note": "出现新券「1+1 随心配 ¥12.9」（与你的常点项相关）"
+    },
+    {
+      "kind": "new_coupon",
+      "coupon_id": "GIFT-PIE-20",
+      "coupon_title": "满 20 送香芋派",
+      "coupon_type": "free_gift",
+      "personal": true,
+      "note": "出现新券「满 20 送香芋派」（与你的常点项相关）"
+    },
+    {
+      "kind": "limited_campaign_active",
+      "campaign_id": "ACT-9D",
+      "campaign_title": "9.9 元早餐周",
+      "personal": true,
+      "note": "限时活动「9.9 元早餐周」进行中"
+    }
+  ]
+}

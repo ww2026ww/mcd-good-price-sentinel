@@ -1,0 +1,9 @@
+{
+  "favorite_items": ["巨无霸", "中薯条", "可口可乐 中杯"],
+  "dining_mode": "pickup",
+  "objective": "balanced",
+  "typical_budget": 40.0,
+  "max_calories": 1200,
+  "alert_threshold": 6.0,
+  "allow_extras": true
+}
