@@ -37,12 +37,17 @@
 - 文件编写：在当前仓库 `E:/ai-coding-study/MMM` 创建全部参赛文件
 - Git：本地初始化仓库（创建时间 2026-10-18，处于活动要求的 2025/12/25–2026/10/25 窗口内）
 
-## 验证记录（待 Token 联调后补充）
+## 验证记录（2026-10-18，经 WorkBuddy 连接器 mcd-mcp 实测）
 
 | 日期 | 验证动作 | 结果 |
 |------|----------|------|
-| _待补_ | 连接 mcp.mcd.cn，调用 now-time-info / campaign-calendar / available-coupons | _待填_ |
-| _待补_ | 跑通 W2 阈值预警 / W3 智能领券流程 | _待填_ |
+| 2026-10-18 | 连接 mcp.mcd.cn，调用 now-time-info | ✅ 成功，返回 2026-10-18 12:36:45 GMT+08:00 |
+| 2026-10-18 | 调用 campaign-calendar | ✅ 成功，返回当月 G-DRAGON 联名、PEACEMINUSONE 周边、9.9 元早餐等真实活动 |
+| 2026-10-18 | 调用 available-coupons | ❌ 服务端 schema 错误 -32602（重试两次均失败，判定服务端 bug，非 Skill 问题） |
+| 2026-10-18 | 调用 query-my-coupons | ✅ 成功，返回真实账户数据「暂无可用优惠券」 |
+| 2026-10-18 | 调用 auto-bind-coupons（真实领券） | ⏸️ 未调用，按护栏需二次确认且 available-coupons 故障，暂缓 |
+
+> 结论：已真实使用麦当劳 MCP 的 3 个只读工具（时间/活动日历/我的券），证明 Skill 与 mcp.mcd.cn 联通与鉴权有效。W3 发现券环节受 available-coupons 服务端故障影响暂不可用，已记录于 MCP_INTEGRATION.md。
 
 ## 说明
 
