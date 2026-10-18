@@ -2,7 +2,7 @@
 
 > 基于麦当劳中国 MCP 的「主动省钱机会哨兵」Skill —— 你不用每天来问，它每天替你判断：今天有没有**对你**真正值得吃的便宜。
 
-麦麦好价哨是一个运行在 [WorkBuddy](https://www.workbuddy.cn) 中的 Skill，对接**麦当劳中国 MCP Server**。它不只是一把「算一次最便宜」的计算器，而是一个**主动哨兵**：每天按四步循环刷新真实数据、按你的偏好生成候选、调用优化器做权威计价、再判断今天是否值得打扰你。**绝大多数日子它保持静默**——只在「对你出现了一个带成因的省钱机会」时才出声，且每条必带「为什么是今天」。
+麦麦好价哨是一个**通用的省钱机会哨兵 Skill**——以 WorkBuddy 原生 `SKILL.md` 作为标准实现形态，其核心逻辑（`scripts/` 下的跨平台 Python）可运行于**任何能接入麦当劳 MCP 并定时触发脚本的 Agent 平台**，而非仅限 WorkBuddy。它对接**麦当劳中国 MCP Server**，不只是一把「算一次最便宜」的计算器，而是一个**主动哨兵**：每天按四步循环刷新真实数据、按你的偏好生成候选、调用优化器做权威计价、再判断今天是否值得打扰你。**绝大多数日子它保持静默**——只在「对你出现了一个带成因的省钱机会」时才出声，且每条必带「为什么是今天」。
 
 > 本仓库为「麦当劳程序员创意开发大赛」参赛作品。非麦当劳官方产品，仅供参考。
 
@@ -40,8 +40,11 @@
 ### 1. 获取麦当劳 MCP Token
 前往 [open.mcd.cn/mcp](https://open.mcd.cn/mcp) 用手机号登录，在「控制台」激活并复制 MCP Token。
 
-### 2. 在 WorkBuddy 接入 mcd-mcp
-左侧边栏「专家·技能·连接器」→「连接器」→ 右上角「自定义连接器」→「配置 MCP」，填入：
+### 2. 接入 mcd-mcp（以 WorkBuddy 为例）
+
+> 麦当劳 MCP 是标准 MCP Server，本配置为通用定义，**不限于 WorkBuddy**。任意兼容 MCP 的宿主（WorkBuddy、Claude Desktop、Cursor、Cline 等）把它加入 MCP 客户端配置即可。
+
+**WorkBuddy 用户**：左侧边栏「专家·技能·连接器」→「连接器」→ 右上角「自定义连接器」→「配置 MCP」，填入：
 
 ```json
 {
@@ -57,8 +60,11 @@
 }
 ```
 
-### 3. 安装本 Skill
-将本仓库 `SKILL.md` 复制到 WorkBuddy 用户技能目录：
+### 3. 安装 / 运行本 Skill（核心逻辑跨平台）
+
+本仓库真正执行省钱判断的是 `scripts/` 下的纯 Python（`mcp_adapter.py` / `baseline.py` / `drift.py` / `opportunity.py` / `daily_sentinel.py`），**不依赖 WorkBuddy**，在任意装有 Python 3 且能连接麦当劳 MCP 的环境即可运行。
+
+- **WorkBuddy 用户**：把 `SKILL.md` 复制到用户技能目录（下方命令），由 WorkBuddy 定时任务驱动：
 
 ```bash
 # macOS / Linux
@@ -68,6 +74,8 @@ cp SKILL.md ~/.workbuddy/skills/maimai-haojiasao/SKILL.md
 # Windows (PowerShell)
 Copy-Item SKILL.md "$env:USERPROFILE\.workbuddy\skills\maimai-haojiasao\SKILL.md" -Force
 ```
+
+- **其他 MCP 宿主**：把 `mcd-mcp` 加入宿主的 MCP 配置（见 `mcp-config.example.json`），并按 `SCHEDULE.md`「通用运行方式」定时执行 `python scripts/daily_sentinel.py` 即可，无需 WorkBuddy。
 
 ### 4. 配置个人偏好 & 设个每日任务
 - 编辑 `preferences.example.json`（复制为 `preferences.json`），填入你的常点项与阈值。
@@ -85,6 +93,8 @@ Copy-Item SKILL.md "$env:USERPROFILE\.workbuddy\skills\maimai-haojiasao\SKILL.md
 ## 架构：复用成熟算法 + 自研差异化层
 
 本 Skill 明确**复用**上游 MIT 项目 [hujjun/mcd-saver-strategist](https://github.com/hujjun/mcd-saver-strategist) 的确定性优化器作为「算」的引擎（原样 vendored 于 `vendor/`，未改算法，保留其 MIT 版权），并在其上构建差异化能力。**差异化不在算法本身，而在算法的使用方式。**
+
+> **双层结构 · 跨平台**：本仓库由「跨平台 Python 引擎」（`scripts/` + vendored 优化器，纯标准库、零平台依赖）+「WorkBuddy 原生 Skill 定义」（`SKILL.md`）组成。引擎**不依赖 WorkBuddy**，可在任意能定时运行脚本并接入麦当劳 MCP 的环境独立运行；`SKILL.md` 仅是 WorkBuddy 这一宿主的「加载入口」，其他遵循 Skill 规范的宿主亦可等价加载其指令与流程。
 
 ```
 麦当劳 MCP (mcd-mcp)
@@ -156,7 +166,7 @@ python scripts/daily_sentinel.py --demo \
 
 ## 真实使用验证
 
-本项目已通过 WorkBuddy 连接器 `mcd-mcp` 对麦当劳 MCP 进行端到端调用（时间 / 活动日历 / 我的券均返回真实数据），证明与 `mcp.mcd.cn` 联通与鉴权有效，满足活动「真实使用麦当劳 MCP 能力」要求。详见 `MCP_INTEGRATION.md` 第 5 节联调记录。
+本项目已通过 MCP（以 WorkBuddy 连接器 `mcd-mcp` 为例）对麦当劳 MCP 进行端到端调用（时间 / 活动日历 / 我的券均返回真实数据），证明与 `mcp.mcd.cn` 联通与鉴权有效，满足活动「真实使用麦当劳 MCP 能力」要求。详见 `MCP_INTEGRATION.md` 第 5 节联调记录。
 
 ---
 

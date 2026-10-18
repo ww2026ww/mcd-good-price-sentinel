@@ -5,7 +5,7 @@
 ## 项目信息
 
 - **项目名称**：麦麦好价哨 (MaiMai Good-Price Sentinel)
-- **项目类型**：WorkBuddy Skill（基于麦当劳中国 MCP 的「主动省钱机会哨兵」）
+- **项目类型**：通用 Skill（基于麦当劳中国 MCP 的「主动省钱机会哨兵」）；本仓库提供 WorkBuddy 原生 Skill 定义（`SKILL.md`），并经 WorkBuddy 完成开发/联调，故提交 `workbuddy.md` 参与 WorkBuddy 专项奖核验。
 - **开发工具**：WorkBuddy（智能体环境，含代码执行、文件读写、Web 调研）
 - **开发时间**：2026-10-18
 
@@ -17,7 +17,7 @@
 
 2. **V1 初版（被动哨兵）**
    - 方向：麦麦好价哨——差异化于普通省钱助手的「哨兵/盯盘」模式。
-   - 交付：仅 WorkBuddy Skill。编写 SKILL.md（9 个 MCP 工具映射 + W1 好价速览 / W2 阈值预警 / W3 智能领券 / W4 活动蹲守）+ 全部必交文件。提交 `6c4d5ce`。
+   - 交付：通用 Skill（WorkBuddy 为首发实现形态，核心逻辑跨平台可运行）。编写 `SKILL.md`（WorkBuddy 原生定义，含 9 个 MCP 工具映射 + W1 好价速览 / W2 阈值预警 / W3 智能领券 / W4 活动蹲守）+ 全部必交文件；核心引擎 `scripts/` 为纯 Python，不依赖 WorkBuddy。提交 `6c4d5ce`。
 
 3. **真实联调（经 mcd-mcp 连接器）**
    - 用户建好 `mcd-mcp` 连接器后实测：`now-time-info`、`campaign-calendar`、`query-my-coupons` 成功；`available-coupons` 报服务端 schema bug `-32602`（重试两次均失败，判定服务端故障，已降级用 `query-my-coupons`）。提交 `87432fc`。

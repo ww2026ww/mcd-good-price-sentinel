@@ -71,10 +71,10 @@
 
 - [x] Skill 已编写并接入麦当劳 MCP 工具编排逻辑（V3 主动哨兵）
 - [x] `mcp-config.example.json` 已按官方格式脱敏配置
-- [x] **真实联调验证**：已通过 WorkBuddy 连接器 `mcd-mcp` 对麦当劳 MCP 进行端到端调用
+- [x] **真实联调验证**：已通过 MCP（以 WorkBuddy 连接器 `mcd-mcp` 为例）对麦当劳 MCP 进行端到端调用
 - [x] **算法复用合规**：vendored 优化器 `selftest.py` 46/46 通过；本 Skill 差异化层 `test_sentinel.py` 26/26 通过
 
-### 联调验证记录（2026-10-18，经 WorkBuddy 连接器 `mcd-mcp`）
+### 联调验证记录（2026-10-18，经 MCP 客户端；本仓库以 WorkBuddy 连接器 `mcd-mcp` 完成实测）
 
 | Tool | 结果 | 返回摘要 |
 |------|------|----------|

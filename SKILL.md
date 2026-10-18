@@ -32,7 +32,7 @@ disable: false
 
 ## 前置条件
 
-用户已在 WorkBuddy「连接器」接入 `mcd-mcp`（麦当劳中国 MCP，地址 `https://mcp.mcd.cn`）并配置有效 Token。若未接入，**先提示用户按文末「MCP 接入」配置**，不要编造任何价格/券/活动数据。
+用户已在某 MCP 客户端接入 `mcd-mcp`（麦当劳中国 MCP，地址 `https://mcp.mcd.cn`）并配置有效 Token——例如 WorkBuddy「连接器」、或 Claude Desktop / Cursor / Cline 等任意兼容 MCP 的宿主。若未接入，**先提示用户按文末「MCP 接入」配置**，不要编造任何价格/券/活动数据。
 
 ## 核心概念
 
@@ -99,7 +99,7 @@ disable: false
   → 全满足：notify（带成因与理由）；否则：silent（结构化日志）
 ```
 
-Agent 落地建议：每天固定时刻（如早 10 点）触发本循环；`decision.action=="notify"` 时把 `decision.reason` 推送给用户（对话 / 企微 / 小程序），并附最优方案；`decision.action=="silent"` 时**不主动打扰**，仅在用户问起时简短说明「今日无针对你的新机会」。
+Agent 落地建议：每天固定时刻（如早 10 点）触发本循环（WorkBuddy 定时任务或任意 cron / 系统定时任务均可）；`decision.action=="notify"` 时把 `decision.reason` 推送给用户（对话 / 消息推送，依宿主能力而定，如企业微信 / 小程序），并附最优方案；`decision.action=="silent"` 时**不主动打扰**，仅在用户问起时简短说明「今日无针对你的新机会」。
 
 ### W3 机会推送与反馈闭环
 
@@ -137,7 +137,7 @@ Agent 落地建议：每天固定时刻（如早 10 点）触发本循环；`dec
 
 ## MCP 接入（给用户）
 
-提示用户按以下 JSON 在 WorkBuddy「自定义连接器 → 配置 MCP」填入（Token 用环境变量占位）：
+提示用户将以下 `mcd-mcp` 配置加入其 MCP 客户端（WorkBuddy「自定义连接器 → 配置 MCP」、或任意兼容 MCP 的宿主的 MCP 配置文件均可；Token 用环境变量占位）：
 
 ```json
 {
